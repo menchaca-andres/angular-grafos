@@ -1,0 +1,36 @@
+<div class="modal-overlay" *ngIf="mostrar">
+    <div class="modal-content">
+        <h2>{{ config.titulo }}</h2>
+
+        <div class="form-group" *ngFor="let campo of config.campos">
+            <ng-container [ngSwitch]="campo.tipo">
+                <!-- Campo número -->
+                <div *ngSwitchCase="'number'">
+                    <label [for]="campo.id">{{ campo.label }}</label>
+                    <input type="number" [id]="campo.id" [(ngModel)]="campo.valor" class="form-control">
+                </div>
+
+                <!-- Campo checkbox -->
+                <div *ngSwitchCase="'checkbox'" class="checkbox-group">
+                    <label>
+                        <input type="checkbox" [id]="campo.id" [(ngModel)]="campo.valor">
+                        {{ campo.label }}
+                    </label>
+                </div>
+
+                <!-- Campo texto -->
+                <div *ngSwitchCase="'text'">
+                    <label [for]="campo.id">{{ campo.label }}</label>
+                    <input type="text" [id]="campo.id" [(ngModel)]="campo.valor" class="form-control">
+                </div>
+            </ng-container>
+        </div>
+
+        <div class="modal-buttons">
+            <button *ngFor="let boton of config.botones" (click)="accionBoton(boton.tipo)"
+                [style.background-color]="boton.colorFondo" [style.color]="boton.colorTexto">
+                {{ boton.texto }}
+            </button>
+        </div>
+    </div>
+</div>

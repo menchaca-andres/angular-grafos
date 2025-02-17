@@ -1,0 +1,20 @@
+<div class="cotainer-buttons">
+    <!-- botón para establecer conexiones entre nodos -->
+    <app-button [config]="buttons.conexion" (modoChange)="toggleModo($event)">
+    </app-button>
+    <!-- botón para eliminar conexiones y nodos -->
+    <app-button [config]="buttons.eliminacion" (modoChange)="toggleModo($event)">
+    </app-button>
+</div>
+
+<div class="container-canvas">
+    <canvas #myCanvas class="myCanvas" id="myCanvas" width="1200px" height="700px" (dblclick)="dobleClickCanvas($event)"
+        (click)="clickCanvas($event)">
+    </canvas>
+</div>
+
+<app-modal
+    [mostrar]="mostrarModal"
+    [config]="modals"
+    (resultado)="manejarResultadoModal($event)">
+</app-modal>
